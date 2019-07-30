@@ -1,0 +1,41 @@
+context Employees {
+	//Employees table - contains 10 employees
+    entity emps {
+        key EMP_ID : Integer not null;
+            FNAME  : String(20);
+            LNAME  : String(20);
+            ROLE   : String(20);
+    };
+
+
+    //Source >> Change Log >> SCD demo
+    //History Preserving demo
+    entity emps_history {
+		key	SURR_ID		 : Integer not null;  //Surrogate key. Will be populated by a SEQUENCE
+		key	EMP_ID		 : Integer not null;
+			FNAME		 : String(20);
+			LNAME		 : String(20);
+			ROLE		 : String(20);
+
+			CHANGE_TYPE  : String(1);	 //"Change Type Attribute" populated by TableComparison transform, persisted by Target operator
+			CHANGE_TIME  : UTCTimestamp; //as above
+
+			CURRENT_FLAG : String(1);   //Populated by HistoryPreserving transform
+			VALID_FROM   : LocalDate;   //as above
+			VALID_TO     : LocalDate;   //as above
+    };
+	
+};
+
+context Trace {
+    entity EmpsChangeLog {
+		key	SURR_ID		 : Integer not null;  //Surrogate key. Will be populated by a SEQUENCE
+		key	EMP_ID		 : Integer not null;	//Original field
+			FNAME		 : String(20);			//Original field
+			LNAME		 : String(20);			//Original field
+			ROLE		 : String(20);			//Original field
+
+			CHANGE_TYPE  : String(1);	 //"Change Type Attribute" populated by TableComparison transform, persisted by Target operator
+			CHANGE_TIME  : UTCTimestamp; //as above
+    };
+};

@@ -1,0 +1,3 @@
+SEQUENCE "EmpsSurrogateGenerator"
+RESET BY SELECT IFNULL(MAX(SURR_ID), 0) + 1 
+FROM "Employees.emps_history"

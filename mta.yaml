@@ -1,3 +1,15 @@
 ID: HANASDI-HistoryPreservation
 _schema-version: '2.1'
 version: 0.0.1
+modules:
+ - name: HdbModule
+   type: hdb
+   path: HdbModule
+   requires:
+    - name: hdi_HdbModule
+
+resources:
+ - name: hdi_HdbModule
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
