@@ -1,0 +1,24 @@
+PROCEDURE "resetToStartingState"( )
+   LANGUAGE SQLSCRIPT AS
+BEGIN
+	--reset source EMPLOYEES table
+	DELETE FROM "Employees.emps";
+	INSERT INTO "Employees.emps" VALUES(1,'Christine','Jones','Manager');
+	INSERT INTO "Employees.emps" VALUES(2,'Eric','Thomas','Manager');
+	INSERT INTO "Employees.emps" VALUES(3,'Rita','Miller','Director');
+	INSERT INTO "Employees.emps" VALUES(4,'Sachin','Gupta','Director');
+	INSERT INTO "Employees.emps" VALUES(5,'Doreen','Anderson','Project Manager');
+	INSERT INTO "Employees.emps" VALUES(6,'Pierre','Dufour','Manager');
+	INSERT INTO "Employees.emps" VALUES(7,'Cheung','Zhou','Director');
+	INSERT INTO "Employees.emps" VALUES(8,'Henk','den Berg','Director');
+	INSERT INTO "Employees.emps" VALUES(9,'Sarah','Jackson','Senior Manager');
+	INSERT INTO "Employees.emps" VALUES(10,'Alex','Smith','Executive Manager');
+	
+	--reset target EMPLOYEES_HISTORY table
+	DELETE FROM "Employees.emps_history";
+	
+	--reset target EMPLOYEES Change Log table
+	DELETE FROM "Trace.EmpsChangeLog";
+
+	COMMIT;
+END;
